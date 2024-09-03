@@ -3,18 +3,18 @@ Finalizer
 
 What to do when music notation software leaves you stranded.
 
-The company that made Finale went out of business. You now have a few thousand ".mus" and ".musx" scores that you are about to not be able to open anymore. They even had the nerve to tell their users that they would only support new activations for only a year. This meant that if you had to reformat your computer after one year, you wouldn't be able to use Finale anymore. Thankfully, they reverted this decision one day after making it public, but they still haven't published a plan to actually make this a reality. I, for one, don't trust them, so I wrote this software to help those who want a safer option.
+The company that created Finale has gone out of business. Now, you have a few thousand “.mus” and “.musx” scores that you may soon be unable to open. Initially, they announced that they would only support new activations for one year, meaning that if you needed to reformat your computer after that time, you wouldn’t be able to use Finale anymore. Fortunately, they reversed this decision a day after making it public. However, they still haven’t provided a concrete plan to implement this change. Personally, I don’t trust them, so I developed this software to offer users a safer alternative.
 
 # Now what?
 
 You basically have two options:
 
-1. Keep a dedicated computer or virtual machine running Finale 27 (the latest known version) and keep using it as-is. This will work but might not be practical or even possible for everyone.
-2. Export all your files into to the [MusicXML](https://www.musicxml.com/) format. This is a generic format that keeps your notes, key changes, etc, but not your fined tune positioning of things (oh, well). This is also a format that can be opened by other notation software packages. Opening these files with another software won't make them look exactly like you had them in Finale, but at least will save you from having to do 90% of the work from scratch.
+1. Keep a dedicated computer or virtual machine running Finale 27 (the latest known version) and keep using it as-is. This approach works but might not be practical or even possible for everyone.
+2. Export all your files to the [MusicXML](https://www.musicxml.com/) format. This is a generic format that preserves your notes, key changes, etc., but not the fine-tuned positioning of elements (oh, well). MusicXML can be opened by other notation software. While these files won’t look exactly as they did in Finale, at least you’ll avoid having to redo 90% of the work from scratch.
 
 It's safe to assume that in the long-run, most users will chose option 2 above, and will eventually end up migrating to another notation software. But there's a catch... 
 
-**Exporting each and every one of you scores will take a lifetime!** I wrote this software to make this process as painless and fast as possible, and reducing this process to three steps.
+**Exporting each and every one of your scores would take forever!** I wrote this software to make the process as painless and fast as possible, reducing it to just three steps.
 
 # Requirements
 
@@ -91,17 +91,17 @@ After all, you already have multiple backups of everything right?
 
 # Non-technical explanation of how this works
 
-Instead of opening and exporting each individual file using Finale, we'll be using the batch export feature. This allows you to point Finale to a specific folder in your computer and convert all the files in there into MusicXML. The problem is that your files are not in one folder! They are scattered around in their respective folders. I mean, who stores all their files in the same place?
+Instead of opening and exporting each individual file using Finale, we’ll use the batch export feature. This feature lets you point Finale to a specific folder on your computer and convert all the files in that folder to MusicXML. The problem is, your files aren’t all in one place—they’re scattered across various folders. After all, who keeps all their files in the same folder?
 
-This repository contains two CLI commands. Executing the first one will **recursively** search the folder you want and copy all the Finale files it finds into a special `scores` folder. Because the search is "recursive", it will go into all the sub-folders it finds until every single folder under the one you chose is searched in. This is different than Finale's search because Finale's only looks for files in that one folder and ignores sub-folders.
+This repository contains two CLI commands to help with this. The first command will **recursively** search through the folder you choose and copy all the Finale files it finds into a special `scores` folder. Because the search is “recursive,” it will go through all the sub-folders, ensuring that every folder under the one you selected is searched. This is different from Finale’s search, which only looks for files in a single folder and ignores sub-folders.
 
-You will now end up with a `scores` folder that contains all your scores. You will notice that the script mangles their filenames a bit. This is because we can't have two files with the same name in the same folder, so to avoid name collisions, the script renames your files. You don't need to worry about this because once we put things back, all the files will be properly renamed to their original names. The whole process shouldn't take more than a couple of seconds assuming a few hundred files. The more files you have, the longer it will take, but it should be fairly quick. You will also note a `scores.json` file. Don't touch this! This is the file that will tell the restoring script where to put the files back.
+You might notice that the script changes some of the filenames. This is to prevent duplicates, as you can’t have two files with the same name in the same folder. Don’t worry about this; once we move the files back, they’ll be renamed to their original names. The whole process should only take a few seconds if you have a few hundred files. If you have more files, it might take a bit longer, but it should still be relatively quick. You’ll also see a `scores.json` file—don’t touch this! It’s important for the restore script, as it tells the script where to return the files.
 
-Now is the time that you will open Finale and do a batch convert of all the files in the `scores` folder (which should be all your Finale files). This can take *a long time*, but you will only have to do this once.
+Now, will now need to open Finale and do a batch conversion of all the files in the `scores` folder (which should now contain all your Finale files). This conversion process might take _a while_, but you’ll only need to do it once.
 
-After Finale finished converting all the `scores` folder, you can run the restore script. This will put every converted file algon their Finale counterparts in their original location. The original files are never touched; we just copy them to the temporary `scores` fodler, convert them, and put the converted files back. 
+After Finale finishes converting the files in the scores folder, you can run the restore script. This will place each converted file alongside its original Finale counterpart in the original location. **The original files are never modified; they’re just copied to the temporary scores folder, converted, and then the converted files are moved back.**
 
-At this point, you can delete the `scores` folder and the `scores.json` files, and go learn a new piece of notation software. You should now have your old Finale files, and the newer MusicXML files alongside them.
+At this point, you can delete the `scores` folder and the `scores.json` file. Now, you should have both your old Finale files and the new MusicXML files stored alongside them, ready for use with your new notation software.
 
 # Version history
 
