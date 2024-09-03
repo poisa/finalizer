@@ -109,4 +109,4 @@ At this point, you can delete the `scores` folder and the `scores.json` files, a
 
 # Was this helpful?
 
-If you found this tool valuable, please consider making donation by following this link: https://www.paypal.com/donate/?hosted_button_id=U39AK3B9BE5WQ
+If you found this tool valuable, please consider making a PayPal donation by following this link: https://www.paypal.com/donate/?hosted_button_id=MRDHDE7HYYS6E
