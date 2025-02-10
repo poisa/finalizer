@@ -49,7 +49,7 @@ function scanDirectory($directory, &$files = [])
 
     /** @var SplFileObject $file */
     foreach ($iterator as $file) {
-        if ($file->isFile() && in_array($file->getExtension(), ['mus', 'musx'])) {
+        if ($file->isFile() && in_array(strtolower($file->getExtension()), ['mus', 'musx'])) {
             $slug         = createSlug($file->getFilename());
             $files[$slug] = $file->getRealPath();
         }
