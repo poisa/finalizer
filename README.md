@@ -105,6 +105,7 @@ At this point, you can delete the `scores` folder and the `scores.json` file. No
 
 # Version history
 
+- 2025-02-10 1.0.1 Add support for uppercase filenames. Thanks to [ScottOaks](https://github.com/ScottOaks)!
 - 2024-09-02 1.0.0 First release.
 
 # Was this helpful?
